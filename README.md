@@ -1,7 +1,11 @@
-![Project Icon](https://raw.githubusercontent.com/canton7/RestEase/master/icon.png) RestEase
-============================================================================================
+![Project Icon](icon.png) RestEase (System.Text.Json fork)
+==================================
 
-[![NuGet](https://img.shields.io/nuget/v/RestEase.svg)](https://www.nuget.org/packages/RestEase/) [![Build status](https://ci.appveyor.com/api/projects/status/5ap27qo5d7tm2o5n?svg=true)](https://ci.appveyor.com/project/canton7/restease)
+**NOTE: This is a forked version which only supports .NET 5 and uses System.Text.Json instead of Newtonsoft.Json**
+
+Available on NuGet: https://www.nuget.org/packages/RestEase.SystemTextJson
+
+==================================
 
 RestEase is a little type-safe REST API client library for .NET Framework 4.5.2 and higher and .NET Platform Standard 1.1 and higher, which aims to make interacting with remote REST endpoints easy, without adding unnecessary complexity.
 
