@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace RestEase
 {
@@ -12,7 +12,7 @@ namespace RestEase
         /// <summary>
         /// Gets or sets the serializer settings to pass to JsonConvert.SerializeObject
         /// </summary>
-        public JsonSerializerSettings? JsonSerializerSettings { get; set; }
+        public JsonSerializerOptions? JsonSerializerSettings { get; set; }
 
         /// <inheritdoc/>
         public override HttpContent? SerializeBody<T>(T body, RequestBodySerializerInfo info)
@@ -20,7 +20,7 @@ namespace RestEase
             if (body == null)
                 return null;
 
-            var content = new StringContent(JsonConvert.SerializeObject(body, this.JsonSerializerSettings));
+            var content = new StringContent(JsonSerializer.Serialize(body, this.JsonSerializerSettings));
 
             const string contentType = "application/json";
             if (content.Headers.ContentType == null)
