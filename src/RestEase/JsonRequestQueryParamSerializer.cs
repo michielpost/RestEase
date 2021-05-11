@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Text.Json;
 
 namespace RestEase
 {
@@ -11,7 +11,7 @@ namespace RestEase
         /// <summary>
         /// Gets or sets the serializer settings to pass to JsonConvert.SerializeObject
         /// </summary>
-        public JsonSerializerSettings? JsonSerializerSettings { get; set; }
+        public JsonSerializerOptions? JsonSerializerSettings { get; set; }
         /// <summary>
         /// Serialize a query parameter whose value is scalar (not a collection), into a collection of name -> value pairs
         /// </summary>
@@ -29,7 +29,7 @@ namespace RestEase
             if (value == null)
                 yield break;
 
-            yield return new KeyValuePair<string, string?>(name, JsonConvert.SerializeObject(value, this.JsonSerializerSettings));
+            yield return new KeyValuePair<string, string?>(name, JsonSerializer.Serialize(value, this.JsonSerializerSettings));
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace RestEase
             foreach (var value in values)
             {
                 if (value != null)
-                    yield return new KeyValuePair<string, string?>(name, JsonConvert.SerializeObject(value, this.JsonSerializerSettings));
+                    yield return new KeyValuePair<string, string?>(name, JsonSerializer.Serialize(value, this.JsonSerializerSettings));
             }
         }
     }

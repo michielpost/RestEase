@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using RestEase.Implementation;
+﻿using RestEase.Implementation;
 using RestEase.Platform;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace RestEase
 {
@@ -42,7 +42,7 @@ namespace RestEase
         /// <summary>
         /// Gets or sets the JsonSerializerSettings to use with all non-overridden serializers / deserializers
         /// </summary>
-        public JsonSerializerSettings? JsonSerializerSettings { get; set; }
+        public JsonSerializerOptions? JsonSerializerSettings { get; set; }
 
 #pragma warning disable CS0618 // Type or member is obsolete
         /// <summary>
@@ -446,32 +446,7 @@ namespace RestEase
             return factory.CreateImplementation<T>(requester);
         }
 
-        /// <summary>
-        /// Create a client using the given base URL and Json.NET serializer settings
-        /// </summary>
-        /// <typeparam name="T">Interface representing the API</typeparam>
-        /// <param name="baseUrl">Base URL</param>
-        /// <param name="jsonSerializerSettings">Serializer settings to pass to Json.NET</param>
-        /// <returns>An implementation of that interface which you can use to invoke the API</returns>
-        [Obsolete("Use 'new RestClient(baseUrl) { JsonSerializerSettings = jsonSerializerSettings }.For<T>()' instead")]
-        public static T For<T>(string baseUrl, JsonSerializerSettings jsonSerializerSettings)
-        {
-            return new RestClient(baseUrl) { JsonSerializerSettings = jsonSerializerSettings }.For<T>();
-        }
-
-        /// <summary>
-        /// Create a client using the given base URL and Json.NET serializer settings
-        /// </summary>
-        /// <typeparam name="T">Interface representing the API</typeparam>
-        /// <param name="baseUrl">Base URL</param>
-        /// <param name="requestModifier">Delegate called on every request</param>
-        /// <param name="jsonSerializerSettings">Serializer settings to pass to Json.NET</param>
-        /// <returns>An implementation of that interface which you can use to invoke the API</returns>
-        [Obsolete("Use 'new RestClient(baseUrl, requestModifier) { JsonSerializerSettings = jsonSerializerSettings }.For<T>()' instead")]
-        public static T For<T>(string baseUrl, RequestModifier requestModifier, JsonSerializerSettings jsonSerializerSettings)
-        {
-            return new RestClient(baseUrl, requestModifier) { JsonSerializerSettings = jsonSerializerSettings }.For<T>();
-        }
+       
 
         /// <summary>
         /// Create a client using the given base URL, and custom serializer and/or deserializer
@@ -502,18 +477,6 @@ namespace RestEase
             return new RestClient(baseUrl, requestModifier) { ResponseDeserializer = responseDeserializer, RequestBodySerializer = requestBodySerializer }.For<T>();
         }
 
-        /// <summary>
-        /// Create a client using the given HttpClient and Json.NET serializer settings
-        /// </summary>
-        /// <typeparam name="T">Interface representing the API</typeparam>
-        /// <param name="httpClient">HttpClient to use to make requests</param>
-        /// <param name="jsonSerializerSettings">Serializer settings to pass to Json.NET</param>
-        /// <returns>An implementation of that interface which you can use to invoke the API</returns>
-        [Obsolete("Use 'new RestClient(httpClient) { JsonSerializerSettings = jsonSerializerSettings }.For<T>()' instead")]
-        public static T For<T>(HttpClient httpClient, JsonSerializerSettings jsonSerializerSettings)
-        {
-            return new RestClient(httpClient) { JsonSerializerSettings = jsonSerializerSettings }.For<T>();
-        }
 
         /// <summary>
         /// Create a client using the given HttpClient, and custom serializer and/or deserializer

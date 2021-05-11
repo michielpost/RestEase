@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Net.Http;
+﻿using System.Net.Http;
+using System.Text.Json;
 
 namespace RestEase
 {
@@ -11,12 +11,12 @@ namespace RestEase
         /// <summary>
         /// Gets or sets the serializer settings to pass to JsonConvert.DeserializeObject{T}
         /// </summary>
-        public JsonSerializerSettings? JsonSerializerSettings { get; set; }
+        public JsonSerializerOptions? JsonSerializerSettings { get; set; }
 
         /// <inheritdoc/>
         public override T Deserialize<T>(string? content, HttpResponseMessage response, ResponseDeserializerInfo info)
         {
-            return JsonConvert.DeserializeObject<T>(content, this.JsonSerializerSettings);
+            return JsonSerializer.Deserialize<T>(content, this.JsonSerializerSettings);
         }
     }
 }
