@@ -3,6 +3,8 @@
 
 **NOTE: This is a forked version which only supports .NET 5 and uses System.Text.Json instead of Newtonsoft.Json**
 
+==================================
+
 Available on NuGet: https://www.nuget.org/packages/RestEase.SystemTextJson
 
 ==================================
