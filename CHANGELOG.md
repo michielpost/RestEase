@@ -1,6 +1,23 @@
 Changelog
 =========
 
+v1.5.7
+------
+
+ - Support multiple attributes on a single parameter (#171)
+ - Source generator: Add .g.cs suffix to generated filenames (#226)
+
+v1.5.6
+------
+
+ - HttpClientFactory: A supplied `RequestModifier` no longer overrides the `PrimaryHttpMessageHandler`, meaning you can supply this when calling `UseWithRestEaseClient` (#211, #220)
+
+v1.5.5
+------
+
+ - Update System.Net.Http dependency to avoid CVE-2018-8292
+ - Source generator: Speed up slightly
+
 v1.5.4
 ------
 
