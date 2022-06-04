@@ -1,7 +1,7 @@
 ![Project Icon](icon.png) RestEase (System.Text.Json fork)
 ==================================
 
-**NOTE: This is a forked version which only supports .NET 5 and uses System.Text.Json instead of Newtonsoft.Json**
+**NOTE: This is a forked version which only supports .NET 6 and uses System.Text.Json instead of Newtonsoft.Json**
 
 ==================================
 
